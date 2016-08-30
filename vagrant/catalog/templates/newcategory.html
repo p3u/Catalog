@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+	<body>
+		<div class="container">
+			<div class="form-box">
+				<h2>Add a new Product</h2>
+				<form action={{url_for("addCategory")}} method="post">
+					<label for="">Category Name</label>
+					<input type="text" name="name">
+					<button class="submit-btn" type="submit" value="Submit">Submit</button>
+				</form>
+			</div>
+			{% with messages = get_flashed_messages() %}
+			  {% if messages %}
+			    <ul class=flashes>
+			    {% for message in messages %}
+			      <li>{{ message }}</li>
+			    {% endfor %}
+			    </ul>
+			  {% endif %}
+			{% endwith %}
+		</div>
+	</body>
+</html>

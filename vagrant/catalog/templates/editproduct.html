@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+	<body>
+		<div class="container">
+			<div class="form-box">
+				<h2>Editing product {{product.name}}</h2>
+				<form action={{url_for("editItem", item_type="product", id=product.id )}} method="post" enctype="multipart/form-data">
+					<label for="name">Product Name</label>
+					<input type="text" name="name" value="{{product.name}}">
+					<label for="description">Product Description</label>
+					<textarea name="description">{{product.description}}</textarea>
+					<label for="price">Product Price</label>
+					<input type="number" name="price" min="0.00" step="0.01" max="2500" value="{{product.price}}">
+					<input type="file" name="image">
+					<button class="submit-btn" type="submit" value="Submit">Submit</button>
+				</form>
+			</div>
+			{% with messages = get_flashed_messages() %}
+			  {% if messages %}
+			    <ul class=flashes>
+			    {% for message in messages %}
+			      <li>{{ message }}</li>
+			    {% endfor %}
+			    </ul>
+			  {% endif %}
+			{% endwith %}
+		</div>
+	</body>
+</html>
