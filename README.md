@@ -1,7 +1,7 @@
 # Arts Catalog
 A Flask webserver using SQLite to host a catalog of Arts categorized into art movements.   
 A set up for Virtual Machine with Vagrant is included in this repo, so you don't have to install all it's dependencies.  
-You can test it's functionality on this *[Live Demo](http://pedrosyd.pythonanywhere.com/index/)* hosted on pythonanywhere.com.  
+You can test it's functionality on this **[Live Demo](http://pedrosyd.pythonanywhere.com/index/)** hosted on pythonanywhere.com.  
 This project was a requisite to the [Full Stack Foundations](https://www.udacity.com/course/full-stack-foundations--ud088) course.  
 
 
