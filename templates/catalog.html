@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="//apis.google.com/js/platform.js?onload=start"></script>
+    <script type=text/javascript src="{{url_for('static', filename='index.logic.js') }}"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="page-title">Arts Catalog</h1>
+            <div class="login-logout">
+                {% if logged_user_id != "" %}
+                <form class="" action={{url_for( "gdisconnect")}} method="post">
+                    <button type="submit" name="Logout">Logout</button>
+                </form>
+                {% else %}
+                <div id="signInButton">
+                    <span class="g-signin" data-scope="openid email" data-clientid="1065611047740-s57h1u5on1d9a41s5a6vfnef2483r6aj.apps.googleusercontent.com" data-redirecturi="postmessage" data-accesstype="offline" data-cookiepolicy="single_host_origin" data-callback="signInCallback" data-approvalprompt="force">
+						</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="category-box">
+            <h2>Categories</h2>
+            <ul class="nav-list">
+                {% for category in categories %}
+                <li class="category-li" data-category-id={{category.id}}>{{category.name if ( category.name|length
+                    < 15 ) else category.name[0:12] + "..."}}</li>
+                        {% if category.user_id == logged_user_id %}
+                        <a class="delete-link" href="{{url_for('deleteItem', id=category.id, item_type='category', name=category.name)}}">❌</a>
+                        <a class="edit-link" href="{{url_for('editItem', id=category.id, item_type='category', name=category.name)}}">✏️</a> {% endif %} {% endfor %}
+            </ul>
+            <a class="add-link" href="{{url_for('addCategory')}}">+ Category</a>
+        </div>
+        <div class="product-box">
+            <h2 id="product-header">Select a Category</h2>
+            <ul class="nav-list" id="products-list">
+                Select a category to view it's products
+            </ul>
+            <a id="new-product-link" class="add-link" href="{{url_for('addProduct', category_id=1)}}">+ Product</a>
+        </div>
+        <div class="description-box">
+            <h2 id="description-header">Select a Product</h2>
+            <p id="product-description"> </p>
+            <img class="product-img" id="product-img" alt="product image" hidden>
+        </div>
+    </div>
+</body>
+
+
+<script>
+    function signInCallback(authResult) {
+        if (authResult["code"]) {
+            $("#signInButton").hide()
+            $.ajax({
+                type: "POST",
+                url: "/gconnect?state={{STATE}}",
+                processData: false,
+                contentType: "application/octet-stream; chartset=utf-8",
+                data: authResult["code"],
+                success: function(result) {
+                    if (result) {
+                        window.location.href = "/index"
+                    } else if (authResult["error"]) {
+                        console.log("There was an error: " + authResult["error"])
+                    }
+                }
+            })
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,131 @@
+body {
+    font-family: Courier New;
+}
+
+div {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input,
+textarea {
+  display: block;
+  clear: both;
+  margin-bottom: 15px;
+  width: 600px;
+}
+
+textarea {
+  height: 200px;
+  resize: vertical;
+}
+
+.category-box {
+  width: 25%;
+  float: left;
+  padding: 15px;
+  height: 80vh;
+}
+
+.product-box {
+  width: 40%;
+  float: left;
+  border-left: 1px solid black;
+  padding: 15px;
+  height: 80vh;
+}
+
+.description-box {
+  width: 35%;
+  float: right;
+  border-left: 1px solid black;
+  padding: 15px;
+  height: 80vh;
+}
+
+.container {
+  width: 1500px;
+  margin: 0px auto;
+  height: 100vh;
+}
+
+.error {
+    background: #f0d6d6;
+    padding: 0.5em;
+}
+
+.category-li,
+.product-li {
+  list-style: none;
+  padding: 5px;
+  width: 75%;
+  float: left;
+}
+
+.category-li,
+.product-li {
+  cursor: crosshair;
+}
+
+.category-li:hover {
+  font-weight: bold;
+}
+
+.nav-list {
+  height: 80%;
+}
+
+.delete-link,
+.edit-link {
+  text-decoration: none;
+  float: left;
+  margin-left: 15px;
+}
+
+.delete-link {
+  color: #d44343;
+}
+
+.edit-link {
+  color: #dcd700;
+}
+
+.product-img {
+  width: 350px;
+}
+
+.add-link {
+  clear: both;
+  display: block;
+  color: black;
+}
+
+.header {
+  min-height: 100px;
+  width: 100%;
+}
+
+.page-title {
+  float:left;
+}
+
+.login-logout {
+  float: right;
+}
+
+.submit-btn {
+  width: 100px;
+}
